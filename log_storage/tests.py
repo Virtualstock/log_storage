@@ -8,6 +8,7 @@ class TestLogRecordingToFile(unittest.TestCase):
         import logging
         self.log = Log(save_file=True)
         self.logger = logging.getLogger('test.'+__name__)
+        self.logger.setLevel(logging.DEBUG)
 
     def test_logging(self):
         with self.log:
@@ -34,6 +35,7 @@ class TestLogRecordingToDb(unittest.TestCase):
         import logging
         self.log = Log(save_file=False)
         self.logger = logging.getLogger('test.'+__name__)
+        self.logger.setLevel(logging.DEBUG)
 
     def test_logging(self):
         with self.log:
