@@ -16,7 +16,7 @@ class TestLogRecordingToFile(unittest.TestCase):
             self.logger.debug("debug")
         self.assertIn(u"info", self.log.log_data)
         self.assertIn(u"debug", self.log.log_data)
-        self.assertIn(u"test.logs.tests", self.log.log_data)
+        self.assertIn(u"test.log_storage.tests", self.log.log_data)
 
     def test_persistence(self):
         with self.log:
@@ -25,7 +25,7 @@ class TestLogRecordingToFile(unittest.TestCase):
         self.log = Log.objects.get(pk=self.log.pk)
         self.assertIn(u"info", self.log.log_data)
         self.assertIn(u"debug", self.log.log_data)
-        self.assertIn(u"test.logs.tests", self.log.log_data)
+        self.assertIn(u"test.log_storage.tests", self.log.log_data)
 
 
 
@@ -43,7 +43,7 @@ class TestLogRecordingToDb(unittest.TestCase):
             self.logger.debug("debug")
         self.assertIn(u"info", self.log.log_data)
         self.assertIn(u"debug", self.log.log_data)
-        self.assertIn(u"test.logs.tests", self.log.log_data)
+        self.assertIn(u"test.log_storage.tests", self.log.log_data)
 
     def test_persistence(self):
         with self.log:
@@ -52,7 +52,7 @@ class TestLogRecordingToDb(unittest.TestCase):
         self.log = Log.objects.get(pk=self.log.pk)
         self.assertIn(u"info", self.log.log_data)
         self.assertIn(u"debug", self.log.log_data)
-        self.assertIn(u"test.logs.tests", self.log.log_data)
+        self.assertIn(u"test.log_storage.tests", self.log.log_data)
 
 
 
