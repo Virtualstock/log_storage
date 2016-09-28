@@ -1,0 +1,5 @@
+test:
+  override:
+    - coverage run manage.py test
+  post:
+    - coverage html -d $CIRCLE_ARTIFACTS
