@@ -1,6 +1,7 @@
 import django.test as unittest
 
-from logs.models import Log
+from log_storage.models import Log
+
 
 class TestLogRecordingToFile(unittest.TestCase):
     def setUp(self):
