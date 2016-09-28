@@ -11,5 +11,5 @@ setup(
     url='http://pypi.v-source.co.uk/',
     packages=['log_storage', 'log_storage.migrations'],
     include_package_data=True,
-    install_requires=[]
+    install_requires=['django<1.7']
 )
