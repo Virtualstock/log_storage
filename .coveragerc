@@ -1,0 +1,6 @@
+[run]
+source = log_storage
+omit = *migrations*
+
+[report]
+show_missing = True
