@@ -23,13 +23,26 @@ INSTALLED_APPS = (
 )
 ```
 
+## Development
 
-## How to test
+
+### How to install
+
+Clone the project
 
 ```
-pipenv install
-pipenv install -r requirements.txt
-pipenv run pip install -e .
-pipenv run coverage run manage.py test
+git clone git@github.com:Virtualstock/log_storage.git
+```
+
+Install it
+
+```
+make setup
+```
+
+### How to run tests
+
+```
+make test
 ```
 
