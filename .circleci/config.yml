@@ -6,14 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:2.7
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
 
     working_directory: ~/repo
 
@@ -21,21 +14,17 @@ jobs:
       - checkout
 
       - run:
-          name: install dependencies
-          command: |
-            pip install pipenv
-            pipenv install -r requirements.txt
-            pipenv run pip install -e .
+          name: Install pipenv
+          command: pip install pipenv
 
-      # run tests!
-      # this example uses Django's built-in test-runner
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
       - run:
-          name: run tests
-          command: |
-            pipenv run coverage run manage.py test
+          name: Setup project
+          command: make setup
+
+      - run:
+          name: Run tests
+          command: make test
+
       - run:
           name: Generate coverage html report
           command: pipenv run coverage html -d test-reports
