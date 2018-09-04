@@ -25,6 +25,7 @@ jobs:
           command: |
             pip install pipenv
             pipenv install -r requirements.txt
+            pipenv run pip install -e .
 
       # run tests!
       # this example uses Django's built-in test-runner
