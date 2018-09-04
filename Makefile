@@ -1,5 +1,5 @@
 setup:
-	pipenv install -r requirements.txt --python=2.7
+	pipenv install --dev
 	pipenv run pip install -e .
 
 test:

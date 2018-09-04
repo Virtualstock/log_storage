@@ -4,9 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-coverage = "==4.2"
 
 [dev-packages]
+coverage = "*"
 
 [requires]
 python_version = "2.7"
