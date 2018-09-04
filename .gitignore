@@ -1,1 +1,3 @@
 .coverage
+test-reports/
+log_storage.egg-info/
