@@ -20,24 +20,11 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
       - run:
           name: install dependencies
           command: |
-            python -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-
-      - save_cache:
-          paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+            pip install pipenv
+            pipenv install -r requirements.txt
 
       # run tests!
       # this example uses Django's built-in test-runner
@@ -47,11 +34,10 @@ jobs:
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
-            coverage run manage.py test
+            pipenv run coverage run manage.py test
       - run:
           name: Generate coverage html report
-          command: coverage html -d $CIRCLE_ARTIFACTS
+          command: pipenv run coverage html -d $CIRCLE_ARTIFACTS
 
       - store_artifacts:
           path: test-reports
