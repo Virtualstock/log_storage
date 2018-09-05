@@ -6,4 +6,5 @@ test:
 	pipenv run coverage run manage.py test --verbosity 2
 
 release:
-	python setup.py sdist bdist_wheel upload -r vspypi
+	python setup.py sdist bdist_wheel
+	twine upload dist/*

@@ -46,6 +46,14 @@ make setup
 make test
 ```
 
+### How to release
+
+Make sure you bump the package version on **setup.py**.
+
+```
+make release
+```
+
 # License
 
 Licensed under `MIT license`. View [license](LICENSE).

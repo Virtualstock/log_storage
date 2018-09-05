@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='log_storage',
-    version='0.3.0',
+    version='0.4.0',
     description='Log handler to store messages with a database record and optional file storage.',
     author='Virtualstock',
     author_email='development.team@virtualstock.com',
