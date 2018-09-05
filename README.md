@@ -46,3 +46,6 @@ make setup
 make test
 ```
 
+# License
+
+Licensed under `MIT license`. View [license](LICENSE).
