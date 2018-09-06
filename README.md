@@ -11,7 +11,7 @@ Add this package as requirement to your django app requirements.txt
 
 ```
 # requirements.txt
-log_storage==0.2
+log_storage
 ```
 
 Add this app to your **INSTALLED_APPS** in your **settings.py**
