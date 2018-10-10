@@ -28,8 +28,11 @@ class Log(models.Model):
     @property
     def log_data(self):
         if self.save_file:
-            with open(self.get_filename(), 'rb') as f:
-                return f.read().decode('utf-8')
+            if self.filename:
+                with open(self.get_filename(), 'rb') as f:
+                    return f.read().decode('utf-8')
+            else:
+                return u''
         else:
             return self.db_log_data or u''
 

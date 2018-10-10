@@ -1,3 +1,6 @@
+import logging
+
+
 import django.test as unittest
 
 from log_storage.models import Log
@@ -5,7 +8,6 @@ from log_storage.models import Log
 
 class TestLogRecordingToFile(unittest.TestCase):
     def setUp(self):
-        import logging
         self.log = Log(save_file=True)
         self.logger = logging.getLogger('test.'+__name__)
         self.logger.setLevel(logging.DEBUG)
@@ -27,12 +29,13 @@ class TestLogRecordingToFile(unittest.TestCase):
         self.assertIn(u"debug", self.log.log_data)
         self.assertIn(u"test.log_storage.tests", self.log.log_data)
 
-
+    def test_log_data(self):
+        """Test that calling log.log_data before logging anything won't throw error."""
+        self.assertEqual('', self.log.log_data)
 
 
 class TestLogRecordingToDb(unittest.TestCase):
     def setUp(self):
-        import logging
         self.log = Log(save_file=False)
         self.logger = logging.getLogger('test.'+__name__)
         self.logger.setLevel(logging.DEBUG)
@@ -54,5 +57,6 @@ class TestLogRecordingToDb(unittest.TestCase):
         self.assertIn(u"debug", self.log.log_data)
         self.assertIn(u"test.log_storage.tests", self.log.log_data)
 
-
-
+    def test_log_data(self):
+        """Test that calling log.log_data before logging anything won't throw error."""
+        self.assertEqual('', self.log.log_data)
