@@ -1,6 +1,6 @@
 # Changelog for `log_storage`.
 
-## UNRELEASED
+## v0.6.0
 
 ### Added
 
