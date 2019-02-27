@@ -1,12 +1,16 @@
 from django.db import models
 
-class Log(models.Model):
+
+class BaseLog(models.Model):
     save_file = models.BooleanField(default=True)
     db_log_data = models.TextField()
     filename = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     prefix = ''
     suffix = '.log'
+
+    class Meta:
+        abstract = True
 
     def get_filename(self):
         import os, time, random
@@ -78,3 +82,6 @@ class Log(models.Model):
         self._handler = None
         self.save()
 
+
+class Log(BaseLog):
+    pass
