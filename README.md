@@ -1,6 +1,7 @@
 # Log Storage
 
 [![CircleCI](https://circleci.com/gh/Virtualstock/log_storage.svg?style=svg)](https://circleci.com/gh/Virtualstock/log_storage)
+[![pullreminders](https://pullreminders.com/badge.svg)](https://pullreminders.com?ref=badge)
 
 A django installable app that can be used as log handler to store messages 
 with a database record and optional file storage.
