@@ -15,8 +15,8 @@ class BaseLog(models.Model):
     def get_filename(self):
         import os, time, random
         from django.conf import settings
-        root = getattr(settings, 'DATA_ROOT')
-        assert root, "DATA_ROOT setting not set"
+        root = getattr(settings, 'PRIVATE_STORAGE_ROOT')
+        assert root, "PRIVATE_STORAGE_ROOT setting not set"
         path = getattr(settings, 'LOG_DATA_DIR', 'logs')
         if not self.filename:
             self.filename = '_'.join(filter(bool, [self.prefix,

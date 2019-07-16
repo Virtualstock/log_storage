@@ -73,4 +73,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-DATA_ROOT = os.tmpnam()
+PRIVATE_STORAGE_ROOT = os.tmpnam()
