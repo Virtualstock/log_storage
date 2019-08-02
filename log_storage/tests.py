@@ -29,6 +29,17 @@ class TestLogRecordingToFile(unittest.TestCase):
         self.assertIn(u"debug", self.log.log_data)
         self.assertIn(u"test.log_storage.tests", self.log.log_data)
 
+    def test_persistence_backward_compatibility(self):
+        with self.log:
+            self.logger.info("info")
+            self.logger.debug("debug")
+        self.log = Log.objects.get(pk=self.log.pk)
+        self.assertTrue(self.log.filename.startswith('logs/'))
+        self.log.filename = self.log.filename[5:]
+        self.assertIn(u"info", self.log.log_data)
+        self.assertIn(u"debug", self.log.log_data)
+        self.assertIn(u"test.log_storage.tests", self.log.log_data)
+
     def test_log_data(self):
         """Test that calling log.log_data before logging anything won't throw error."""
         self.assertEqual('', self.log.log_data)

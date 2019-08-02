@@ -6,6 +6,7 @@
 ### Bugfix
 
 Write utf-8 encoded data to file streams.
+Backwards-compatible data retrieval.
 
 
 ## v0.8.1
