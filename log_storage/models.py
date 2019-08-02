@@ -15,23 +15,21 @@ class BaseLog(models.Model):
     class Meta:
         abstract = True
 
-    def get_filename(self):
+    def _get_desired_filename(self):
         import os, time, random
         from django.conf import settings
         path = getattr(settings, 'LOG_DATA_DIR', 'logs')
-        if not self.filename:
-            self.filename = '_'.join(filter(bool, [self.prefix,
+        filename = '_'.join(filter(bool, [self.prefix,
                     time.strftime('%Y%m%d_%H%M%S'),
                     ''.join([random.choice('0123456789') for i in range(0, 5)]),
                     self.suffix]))
-        filename = self.filename
         return os.path.join(path, filename)
 
     @property
     def log_data(self):
         if self.save_file:
             if self.filename:
-                with private_storage.open(self.get_filename(), 'rb') as f:
+                with private_storage.open(self.filename, 'rb') as f:
                     return f.read().decode('utf-8')
             else:
                 return u''
@@ -54,7 +52,7 @@ class BaseLog(models.Model):
         class FileStreamHandler(StreamHandler):
             def close(handler):
                 handler.stream.contents.seek(0)
-                private_storage.save(self.get_filename(), handler.stream.contents)
+                self.filename = private_storage.save(self._get_desired_filename(), handler.stream.contents)
                 super(FileStreamHandler, handler).close()
         return FileStreamHandler(FileStream())
 
