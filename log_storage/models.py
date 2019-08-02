@@ -47,7 +47,7 @@ class BaseLog(models.Model):
                 stream.contents.open("wb")
 
             def write(stream, data):
-                stream.contents.write(data)
+                stream.contents.write(data.encode("utf-8"))
 
         class FileStreamHandler(StreamHandler):
             def close(handler):

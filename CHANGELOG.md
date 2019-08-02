@@ -1,6 +1,13 @@
 # Changelog for `log_storage`.
 
 
+## v0.8.2
+
+### Bugfix
+
+Write utf-8 encoded data to file streams.
+
+
 ## v0.8.1
 
 ### Changed
