@@ -1,5 +1,8 @@
+import os, time
+
 from private_storage.storage import private_storage
 
+from django.conf import settings
 from django.core.files.base import ContentFile
 from django.db import models
 
@@ -16,9 +19,6 @@ class BaseLog(models.Model):
         abstract = True
 
     def _get_desired_filename(self):
-        import os, time
-        from django.conf import settings
-
         path = getattr(settings, "LOG_DATA_DIR", "logs")
         filename = "{}_{}{}".format(
             self.prefix, time.strftime("%Y%m%d_%H%M%S_%f"), self.suffix
@@ -29,7 +29,13 @@ class BaseLog(models.Model):
     def log_data(self):
         if self.save_file:
             if self.filename:
-                with private_storage.open(self.filename, "rb") as f:
+                if private_storage.exists(self.filename):
+                    file_path = self.filename
+                else:
+                    # Backwards compatability with 0.7.0
+                    path = getattr(settings, "LOG_DATA_DIR", "logs")
+                    file_path = os.path.join(path, self.filename)
+                with private_storage.open(file_path, "rb") as f:
                     return f.read().decode("utf-8")
             else:
                 return u""
@@ -47,7 +53,7 @@ class BaseLog(models.Model):
                 stream.contents.open("wb")
 
             def write(stream, data):
-                stream.contents.write(data)
+                stream.contents.write(data.encode("utf-8"))
 
         class FileStreamHandler(StreamHandler):
             def close(handler):
