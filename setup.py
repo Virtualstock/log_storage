@@ -20,5 +20,5 @@ setup(
     url='https://github.com/virtualstock/log_storage/',
     packages=['log_storage', 'log_storage.migrations'],
     include_package_data=True,
-    install_requires=['django'],
+    install_requires=['django', 'django-private-storage'],
 )
