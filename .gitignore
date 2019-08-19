@@ -1,4 +1,5 @@
-.coverage
+.coverage*
+.tox
 db.sqlite3
 test-reports/
 log_storage.egg-info/
