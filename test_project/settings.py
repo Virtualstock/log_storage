@@ -4,6 +4,7 @@ Django settings for test_project project.
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import tempfile
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -73,4 +74,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-PRIVATE_STORAGE_ROOT = os.tmpnam()
+PRIVATE_STORAGE_ROOT = tempfile.tempdir

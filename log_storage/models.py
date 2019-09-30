@@ -5,6 +5,7 @@ from private_storage.storage import private_storage
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.db import models
+from django.utils.encoding import smart_str
 
 
 class BaseLog(models.Model):
@@ -49,11 +50,11 @@ class BaseLog(models.Model):
 
         class FileStream(object):
             def __init__(stream):
-                stream.contents = ContentFile(None)
+                stream.contents = ContentFile('')
                 stream.contents.open("wb")
 
             def write(stream, data):
-                stream.contents.write(data.encode("utf-8"))
+                stream.contents.write(smart_str(data))
 
         class FileStreamHandler(StreamHandler):
             def close(handler):
