@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import logging
 
 
@@ -44,6 +45,14 @@ class TestLogRecordingToFile(unittest.TestCase):
         """Test that calling log.log_data before logging anything won't throw error."""
         self.assertEqual('', self.log.log_data)
 
+    def test_logging_unicode(self):
+        with self.log:
+            self.logger.info(u"инфо")
+            self.logger.debug(u"дебуг")
+        self.log = Log.objects.get(pk=self.log.pk)
+        self.assertIn(u"инфо", self.log.log_data)
+        self.assertIn(u"дебуг", self.log.log_data)
+
 
 class TestLogRecordingToDb(unittest.TestCase):
     def setUp(self):
@@ -71,3 +80,11 @@ class TestLogRecordingToDb(unittest.TestCase):
     def test_log_data(self):
         """Test that calling log.log_data before logging anything won't throw error."""
         self.assertEqual('', self.log.log_data)
+
+    def test_logging_unicode(self):
+        with self.log:
+            self.logger.info(u"инфо")
+            self.logger.debug(u"дебуг")
+        self.log = Log.objects.get(pk=self.log.pk)
+        self.assertIn(u"инфо", self.log.log_data)
+        self.assertIn(u"дебуг", self.log.log_data)
