@@ -50,7 +50,7 @@ class BaseLog(models.Model):
 
         class FileStream(object):
             def __init__(stream):
-                stream.contents = ContentFile('')
+                stream.contents = ContentFile("")
                 stream.contents.open("wb")
 
             def write(stream, data):
