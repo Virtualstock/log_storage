@@ -1,13 +1,18 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     sha: v0.9.2
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
 
--   repo: https://github.com/ambv/black
+  - repo: https://github.com/ambv/black
     rev: stable
     hooks:
-    - id: black
+      - id: black
+        name: black
+        language: system
+        language_version: "python3"
+        entry: black
+        types: [python]
