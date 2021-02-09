@@ -9,7 +9,7 @@ if os.path.exists("README.md"):
 
 setup(
     name="log_storage",
-    version="0.9.0",
+    version="0.10.0",
     license="MIT",
     description="Log handler to store messages with a database record and optional file storage.",
     keywords=["Django", "Log", "App"],

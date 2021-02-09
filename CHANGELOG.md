@@ -1,6 +1,15 @@
 # Changelog for `log_storage`.
 
 
+## v0.10.0
+
+### Changed
+
+Drop support fo python2.
+Support Django 2.2.
+Ensure files are binary throughout.
+
+
 ## v0.8.2
 
 ### Bugfix
