@@ -8,7 +8,7 @@ wheel = "*"
 
 [dev-packages]
 coverage = "*"
-django = "<2"
+django = "<3"
 django-private-storage = "*"
 wheel = "*"
 
